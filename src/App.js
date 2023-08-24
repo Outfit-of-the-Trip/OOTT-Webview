@@ -1,4 +1,4 @@
-import KakaoMap from "./components/kakaoMap";
+import KakaoMap from "./components/PhotoZone/kakaoMap";
 
 function App() {
   return (
