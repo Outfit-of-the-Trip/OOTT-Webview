@@ -14,6 +14,11 @@ const locations = [
     latlng: { lat: 33.45088, lng: 126.56994 },
     image: "https://postfiles.pstatic.net/MjAxOTEwMTFfMjIg/MDAxNTcwNzg1ODM3NTU0.S-ltTb4JaOedIKIRE-mWYcVuZGTBGi8Z8G8NJZtQmrkg.dlyc5gHE3DSF4rvH3fiirLhP7ilKSZuz6t0a0KoWJrYg.PNG.kkson50/sample_images_03.png?type=w773"
   },
+  {
+    title: "테스트4",
+    latlng: { lat: 33.42, lng: 126.4 },
+    image: "https://postfiles.pstatic.net/MjAxOTEwMTFfMjIg/MDAxNTcwNzg1ODM3NTU0.S-ltTb4JaOedIKIRE-mWYcVuZGTBGi8Z8G8NJZtQmrkg.dlyc5gHE3DSF4rvH3fiirLhP7ilKSZuz6t0a0KoWJrYg.PNG.kkson50/sample_images_03.png?type=w773"
+  },
 ]
 
 export default locations

@@ -1,54 +1,60 @@
-import React, { useEffect, useState } from 'react';
-import { CustomOverlayMap, Map, MapMarker } from 'react-kakao-maps-sdk';
+import React, { useRef, useState } from 'react';
+import { CustomOverlayMap, Map, MapMarker, ZoomControl } from 'react-kakao-maps-sdk';
 import axios from 'axios';
-
-import KakaoTogle from './KakaoTogle';
 import locations from './location'
+
+const { kakao } = window;
 
 const KakaoMap = () => {
 
-  const [openWindow, setOpenWindow] = useState(false)
+  
+  const [state, setState] = useState({
+    center: { lat: 33.452613, lng: 126.570888 },
+    isPanto: false,
+  })
 
-  const handleMarkerClick = (index) => {
-    if(openWindow !== index) setOpenWindow(index)
-    else setOpenWindow(null)
-  };
-
-  const [lat, setLat] = useState(33.450705)
-  const [lng, setLng] = useState(126.570677)
-
+  const sendToRN = (loc) => {
+    if (window.ReactNativeWebView) {
+        window.ReactNativeWebView.postMessage(
+            JSON.stringify( {data:loc} )
+        );
+    } else {
+      console.log("ERROR : Cannot Send Data to App")
+    }
+};
   return (
     <>
-   <Map center={{ lat: lat, lng: lng }} 
-         style={{ width: '100vw', height: '100vh', margin: '0 auto', justifyContent: 'center', alignItems: 'center'  }} 
-         level={4}
-    >
+      <Map
+          center={state.center}
+          isPanto={state.isPanto}
+          style={{ width: '100vw', height: '100vh'  }} 
+          level={4}
+      > 
       {locations.map((loc, idx) => (
         <MapMarker
             key={`${loc.title}-${loc.latlng.lat}`}
             position={loc.latlng}
             image={{
-              src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png',
-              size: { width: 20, height: 30 },
+              src: "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png",
+              size: { width: 64, height: 69 },
             }}
-            title={loc.title}
             clickable={true}
 
             onClick={ () => {
-              handleMarkerClick(idx);
-              setLat(loc.latlng.lat);
-              setLng(loc.latlng.lng);
+              sendToRN(loc)
+              setState({
+                center: { lat: loc.latlng.lat, lng: loc.latlng.lng },
+                isPanto: true,
+              })
             } }
         >
-
-          {openWindow === idx && (
-            <KakaoTogle loc={loc} />
-          )}
-
         </MapMarker>
       ))}
-    </Map>    
-  </>
+      <ZoomControl position={kakao.maps.ControlPosition.TOPRIGHT} />
+
+      </Map>  
+     
+    </>
   );
 }
 
