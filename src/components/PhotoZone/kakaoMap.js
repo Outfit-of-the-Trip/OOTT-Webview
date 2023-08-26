@@ -30,13 +30,13 @@ const KakaoMap = () => {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   
     const distance = earthRadiusKm * c; // 두 지점 간의 거리 (단위: km)
-    if(distance > 10) return false;
+    if(distance > 5) return false;
     else return true;
   }
 
   
   const [state, setState] = useState({
-    center: { lat: 33.452613, lng: 126.570888 },
+    center: { lat: 37.5557113068, lng: 126.9922506300 },
     isPanto: false,
   })
 
@@ -55,7 +55,7 @@ const KakaoMap = () => {
           center={state.center}
           isPanto={state.isPanto}
           style={{ width: '100vw', height: '100vh'  }} 
-          level={4}
+          level={5}
       > 
 
       {locations.map((loc, idx) => (
@@ -64,7 +64,7 @@ const KakaoMap = () => {
             key={`${loc.title}-${loc.latlng.lat}`}
             position={loc.latlng}
             image={{
-              src: "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FkLHA6%2Fbtsr9RBWrGm%2FKh2kmCuC37g5a3rgMvasK0%2Fimg.png",
+              src: "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FFAEZM%2FbtssaqYnzbm%2Fz2XV2Q8iCAIKe3ThtqGPxk%2Fimg.png",
               size: { width: 30, height: 40 },
             }}
             clickable={true}
