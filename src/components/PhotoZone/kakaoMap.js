@@ -65,7 +65,7 @@ const KakaoMap = () => {
             position={loc.latlng}
             image={{
               src: "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FFAEZM%2FbtssaqYnzbm%2Fz2XV2Q8iCAIKe3ThtqGPxk%2Fimg.png",
-              size: { width: 30, height: 40 },
+              size: { width: 20, height: 30 },
             }}
             clickable={true}
 
